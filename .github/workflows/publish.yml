@@ -1,0 +1,242 @@
+name: Publish DocC
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v4
+
+      - name: Set up Swift
+        uses: swift-actions/setup-swift@v2
+        with:
+          swift-version: '6.2'
+
+      - name: Build DocC
+        run: |
+          set -euo pipefail
+          output_root="${GITHUB_WORKSPACE}/_site"
+          rm -rf "${output_root}"
+          mkdir -p "${output_root}"
+
+          repo_name="${GITHUB_REPOSITORY#*/}"
+          base_path="/${repo_name}"
+
+          docc convert "index.docc" \
+            --output-path "${output_root}" \
+            --transform-for-static-hosting \
+            --hosting-base-path "${base_path}"
+
+          # Discover DocC landing path from the built index JSON (do not guess).
+          DOCC_INDEX_JSON_PATH="${output_root}/index/index.json"
+          landing_path=$(DOCC_INDEX_JSON_PATH="${DOCC_INDEX_JSON_PATH}" swift - <<'SWIFT'
+          import Foundation
+
+          struct DoccIndex: Decodable {
+            struct Item: Decodable { let path: String }
+            let interfaceLanguages: [String: [Item]]
+          }
+
+          let env = ProcessInfo.processInfo.environment
+          let indexPath = env["DOCC_INDEX_JSON_PATH"] ?? ""
+
+          func fallback() {
+            print("/documentation")
+          }
+
+          guard !indexPath.isEmpty else { fallback(); exit(0) }
+
+          do {
+            let data = try Data(contentsOf: URL(fileURLWithPath: indexPath))
+            let idx = try JSONDecoder().decode(DoccIndex.self, from: data)
+            let items = idx.interfaceLanguages["swift"] ?? idx.interfaceLanguages.values.first ?? []
+            let raw = items.first?.path ?? "/documentation"
+            let normalized = "/" + raw.trimmingCharacters(in: CharacterSet(charactersIn: "/"))
+            print(normalized)
+          } catch {
+            fallback()
+          }
+          SWIFT
+          )
+          landing_path="/${landing_path#"/"}"
+          landing_path="${landing_path%/}"
+
+          cat > "${output_root}/index.html" <<EOF
+          <!doctype html>
+          <html lang="en">
+          <head>
+            <meta charset="utf-8"/>
+            <meta name="viewport" content="width=device-width, initial-scale=1"/>
+            <title>todo3 triage</title>
+            <meta name="description" content="Daily PJM triage snapshot + archive"/>
+
+            <meta property="og:type" content="website"/>
+            <meta property="og:title" content="todo3 triage"/>
+            <meta property="og:description" content="Daily PJM triage snapshot + archive"/>
+            <meta property="og:image" content="https://github.com/wrkstrm.png?size=512"/>
+
+            <meta name="twitter:image" content="https://github.com/wrkstrm.png?size=512"/>
+            <meta name="twitter:card" content="summary_large_image"/>
+            <meta name="twitter:title" content="todo3 triage"/>
+            <meta name="twitter:description" content="Daily PJM triage snapshot + archive"/>
+
+            <meta http-equiv="refresh" content="0.25; url=${base_path}${landing_path}/"/>
+
+            <style>
+              :root {
+                color-scheme: light dark;
+                --bg-light: #ffffff;
+                --fg-light: #111827;
+                --muted-light: #6b7280;
+                --card-light: #f3f4f6;
+                --skeleton-light: rgba(17, 24, 39, 0.08);
+
+                --bg-dark: #0b0f14;
+                --fg-dark: #e5e7eb;
+                --muted-dark: #9ca3af;
+                --card-dark: #111827;
+                --skeleton-dark: rgba(229, 231, 235, 0.10);
+              }
+
+              body {
+                margin: 0;
+                min-height: 100vh;
+                display: grid;
+                place-items: center;
+                font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+                background: var(--bg-light);
+                color: var(--fg-light);
+              }
+
+              @media (prefers-color-scheme: dark) {
+                body { background: var(--bg-dark); color: var(--fg-dark); }
+              }
+
+              .card {
+                width: min(720px, calc(100vw - 32px));
+                padding: 20px 18px;
+                border-radius: 14px;
+                background: var(--card-light);
+              }
+
+              @media (prefers-color-scheme: dark) {
+                .card { background: var(--card-dark); }
+              }
+
+              .title {
+                font-size: 14px;
+                font-weight: 600;
+                margin: 0 0 10px 0;
+              }
+
+              .muted {
+                font-size: 12px;
+                margin: 0;
+                color: var(--muted-light);
+              }
+
+              @media (prefers-color-scheme: dark) {
+                .muted { color: var(--muted-dark); }
+              }
+
+              .skeleton {
+                position: relative;
+                overflow: hidden;
+                border-radius: 10px;
+                height: 12px;
+                background: var(--skeleton-light);
+                margin-top: 10px;
+              }
+
+              @media (prefers-color-scheme: dark) {
+                .skeleton { background: var(--skeleton-dark); }
+              }
+
+              .skeleton::after {
+                content: "";
+                position: absolute;
+                inset: 0;
+                transform: translateX(-100%);
+                background: linear-gradient(90deg, transparent, rgba(255,255,255,0.35), transparent);
+                animation: shimmer 1.0s infinite;
+              }
+
+              @media (prefers-color-scheme: dark) {
+                .skeleton::after {
+                  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.18), transparent);
+                }
+              }
+
+              @keyframes shimmer {
+                100% { transform: translateX(100%); }
+              }
+
+              .row { display: grid; gap: 10px; }
+              .w-85 { width: 85%; }
+              .w-65 { width: 65%; }
+              .w-95 { width: 95%; }
+
+              a {
+                display: inline-block;
+                margin-top: 14px;
+                font-size: 12px;
+                text-decoration: none;
+                color: inherit;
+                opacity: 0.9;
+              }
+            </style>
+
+            <script>
+              const target = `${base_path}${landing_path}/`;
+              window.setTimeout(() => {
+                window.location.replace(target);
+              }, 50);
+            </script>
+          </head>
+          <body>
+            <main class="card" aria-busy="true" aria-live="polite">
+              <p class="title">Opening documentation…</p>
+              <div class="row">
+                <div class="skeleton w-95"></div>
+                <div class="skeleton w-85"></div>
+                <div class="skeleton w-65"></div>
+              </div>
+              <p class="muted" style="margin-top: 12px;">If you are not redirected automatically, use the link below.</p>
+              <a href="${base_path}${landing_path}/">Open documentation</a>
+            </main>
+          </body>
+          </html>
+          EOF
+
+          touch "${output_root}/.nojekyll"
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy
+        id: deployment
+        uses: actions/deploy-pages@v4
