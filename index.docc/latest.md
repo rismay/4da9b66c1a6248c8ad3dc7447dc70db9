@@ -1,5 +1,19 @@
 # Latest
 
+@Options {
+  @TopicsVisualStyle(detailedGrid)
+}
+
+## Topics
+
+### Triage
+- <doc:triage-sets-2026-02-18>
+
+### Threads
+- <doc:threads>
+
+---
+
 Triage run: `sample-2026-02-18T13-09-19-0800`
 
 ## Next assigned
