@@ -22,4 +22,4 @@ Next steps:
 - Map brand identities to submodules + canonical URLs
 
 ---
-Generated from `todo3/provisioned/triage/config.json`.
+Generated from `todo3/provisioned/threads/config.json`.
