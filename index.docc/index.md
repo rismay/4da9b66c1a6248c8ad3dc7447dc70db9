@@ -1,22 +1,25 @@
-# todo3 triage
+# todo3 threads
 
 @Metadata {
   @PageKind(article)
   @TechnologyRoot
-  @TitleHeading("PJM daily triage")
+  @TitleHeading("Discord thread registry")
 }
 
 @Options {
   @AutomaticSeeAlso(disabled)
 }
 
-Operational triage for **todo3** (timezone: `America/Los_Angeles`).
+Stable, overwrite-in-place pages for Discord threads (plus daily triage views).
 
 ## Topics
 
-### Daily
+### Threads
+- <doc:threads-index>
+
+### Triage
 - <doc:latest>
+- <doc:archive>
 
 ### Operations
-- <doc:archive>
 - <doc:triage-navigation>
