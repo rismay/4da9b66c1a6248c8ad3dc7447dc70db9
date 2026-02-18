@@ -1,30 +1,59 @@
 # Open threads
 
-Open threads snapshot for **2026-02-17**.
-
 ## Topics
 
 ### Priority
 
 #### P0
-- P0.0 — <doc:thread-1470892880003600454>
+- P0 — <doc:thread-1470893762019459122>
+- P0.1 — <doc:thread-1470848140423856159>
+- P0.1 — <doc:thread-1471918165100335155>
+- P0.2 — <doc:thread-1471903185294725343>
+- P0.3 — <doc:thread-1470887947976048812>
+- P0.4 — <doc:thread-1471916250912522351>
+- P0.4 — <doc:thread-1470796796715470938>
+- P0.5 — <doc:thread-1470233121667678389>
+- P0.5 — <doc:thread-1472002512004583577>
+- P0.5 — <doc:thread-1471901439839436872>
+- P0.6 — <doc:thread-1470184159296098540>
+- P0.7 — <doc:thread-1470616120871489629>
+- P0.8 — <doc:thread-1470184156888830016>
 
 #### P1
-- P1.7 — <doc:thread-1473381087769006174>
+- P1.6 — <doc:thread-1470884880962289822>
+- P1.7 — <doc:thread-1470892636041908377>
 
 #### Other P
-
-_No other open threads in this snapshot._
+- P2 — <doc:thread-1470193388581163091>
+- P2.1 — <doc:thread-1470319534375440395>
+- P2.2 — <doc:thread-1470184161099907218>
+- P2.3 — <doc:thread-1470233975741091841>
+- P?.? — <doc:thread-1470867511926063228>
 
 ### Severity
 
 #### S0
-- S0 — <doc:thread-1470892880003600454>
 
 #### S1
 
-_No S1 threads in this snapshot._
-
 #### Other S
-
-_No other severity-coded threads in this snapshot._
+- Sx — <doc:thread-1470616120871489629>
+- Sx — <doc:thread-1470233121667678389>
+- Sx — <doc:thread-1470233975741091841>
+- Sx — <doc:thread-1471916250912522351>
+- Sx — <doc:thread-1470848140423856159>
+- Sx — <doc:thread-1471903185294725343>
+- Sx — <doc:thread-1472002512004583577>
+- Sx — <doc:thread-1470184159296098540>
+- Sx — <doc:thread-1470892636041908377>
+- Sx — <doc:thread-1471918165100335155>
+- Sx — <doc:thread-1471901439839436872>
+- Sx — <doc:thread-1470893762019459122>
+- Sx — <doc:thread-1470319534375440395>
+- Sx — <doc:thread-1470884880962289822>
+- Sx — <doc:thread-1470184156888830016>
+- Sx — <doc:thread-1470184161099907218>
+- Sx — <doc:thread-1470867511926063228>
+- Sx — <doc:thread-1470193388581163091>
+- Sx — <doc:thread-1470796796715470938>
+- Sx — <doc:thread-1470887947976048812>
