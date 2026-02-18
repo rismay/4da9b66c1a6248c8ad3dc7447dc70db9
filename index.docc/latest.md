@@ -1,25 +1,80 @@
-# Latest
+# todo3 — triage run
 
-Generated triage for **2026-02-18**.
+- runId: `run-2026-02-18T11-15-33-0800`
+- generatedAt: `2026-02-18T19:15:33.183Z`
+- runDir: `/Users/sonoma/todo3/provisioned/threads/triage/runs/run-2026-02-18T11-15-33-0800`
 
-## Topics
+## Next assigned
+- P0.1 — **Laussat Studio public website (unblock developer account)** (owner: rismay)
+  - next: Public landing is polished and consistent with brand
+  - link: https://discord.com/channels/1407786883773104278/1471918165100335155
 
-- <doc:triage-sets-2026-02-18>
+## Now
+- (none)
 
----
+## Next
+- P0.1 — **Laussat Studio public website (unblock developer account)** (owner: rismay)
+  - next: Public landing is polished and consistent with brand
+  - link: https://discord.com/channels/1407786883773104278/1471918165100335155
+- P0.4 — **DocC hosting: remove /documentation/ prefix** (owner: rismay)
+  - next: Confirm if it is possible under our hosting target(s)
+  - link: https://discord.com/channels/1407786883773104278/1471916250912522351
+- P0.4 — **verify-docc-deploy-tools** (owner: rismay)
+  - next: Review thread and write next action
+  - link: https://discord.com/channels/1407786883773104278/1470796796715470938
+- P0.5 — **CLIA as signing entity (offline paste + templates)** (owner: rismay)
+  - next: Review thread and write next action
+  - link: https://discord.com/channels/1407786883773104278/1470233121667678389
+- P0.5 — **Incidents above threads: emoji prefix + severity naming protocol** (owner: rismay)
+  - next: Select incident prefix emoji that sorts above 🧵 in Discord
+  - link: https://discord.com/channels/1407786883773104278/1472002512004583577
+- P0.5 — **Mission Control: per-task thread protocol + logging** (owner: rismay)
+  - next: Naming convention is fixed: 🚀-pM.m-<statusEmoji>-<tagEmojis>-<slug>
+  - link: https://discord.com/channels/1407786883773104278/1471901439839436872
+- P0.6 — **Invoke CLIA CLI (how-to + validation)** (owner: rismay)
+  - next: Review thread and write next action
+  - link: https://discord.com/channels/1407786883773104278/1470184159296098540
+- P0.7 — **Agents should accept SSH credentials** (owner: rismay)
+  - next: Review thread and write next action
+  - link: https://discord.com/channels/1407786883773104278/1470616120871489629
+- P0.8 — **Test thread system** (owner: rismay)
+  - next: Review thread and write next action
+  - link: https://discord.com/channels/1407786883773104278/1470184156888830016
+- P1.6 — **Swift tool: sort + lint repo/Discord threads (priority/name convention)** (owner: rismay)
+  - next: Swift CLI reads threads/*/*.thread.clia.json
+  - link: https://discord.com/channels/1407786883773104278/1470884880962289822
+- P1.7 — **Kebab police (night watch function, alphabeta)** (owner: rismay)
+  - next: Doc: what kebab-police is and when it activates
+  - link: https://discord.com/channels/1407786883773104278/1470892636041908377
+- P2 — **Fix GitHub SSH auth for private submodules** (owner: rismay)
+  - next: SSH auth works for git@github.com
+  - link: https://discord.com/channels/1407786883773104278/1470848140423856159
+- P2 — **Use binary encoding for data** (owner: rismay)
+  - next: Review thread and write next action
+  - link: https://discord.com/channels/1407786883773104278/1470193388581163091
+- P2.1 — **Spin-offs after CLIA migration** (owner: rismay)
+  - next: Review thread and write next action
+  - link: https://discord.com/channels/1407786883773104278/1470319534375440395
+- P2.2 — **Token usage: Apple Intelligence vs OpenAI** (owner: rismay)
+  - next: Review thread and write next action
+  - link: https://discord.com/channels/1407786883773104278/1470184161099907218
+- P2.3 — **Custom binaries for vibe coders (make it work faster)** (owner: rismay)
+  - next: Review thread and write next action
+  - link: https://discord.com/channels/1407786883773104278/1470233975741091841
+- 0.0.1 — **Unclaw: make OpenClaw agent system interop with CLIA agent system, then detach** (owner: rismay)
+  - next: Interop contract exists (interfaces, message envelope, lifecycle, capabilities) and is documented
+  - link: https://discord.com/channels/1407786883773104278/1470867511926063228
 
-# todo3 — triage (2026-02-18)
+## Blocked
+- (none)
 
-Lane: #pjm-todo3 (1470041553795023070)
-
-## In progress
-
-### Brand identities standardization
-
-Next steps:
-- Unify to one canonical schema + instances per org/brand
-- Ensure every org has an instance in private arms
-- Map brand identities to submodules + canonical URLs
-
----
-Generated from `provisioned/threads/config.json`.
+## Shipped
+- P0 — **Reminder system: appointments (doctor, etc.)** (owner: rismay)
+  - next: Define standard reminder offsets (e.g., 24h, 2h, 30m)
+  - link: https://discord.com/channels/1407786883773104278/1470893762019459122
+- P0.2 — **Incident investigation + check wrkstrm.app missing content** (owner: rismay)
+  - next: Incident investigation thread has a clear summary, evidence pointers, and follow-ups
+  - link: https://discord.com/channels/1407786883773104278/1471903185294725343
+- P0.3 — **Weekend merge runway: unblock top-level merges + incorporate weekend changes** (owner: rismay)
+  - next: Branch reconciliation plan exists (ordered list, conflict policy)
+  - link: https://discord.com/channels/1407786883773104278/1470887947976048812
