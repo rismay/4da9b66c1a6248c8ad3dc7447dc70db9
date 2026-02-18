@@ -4,8 +4,7 @@ Generated triage for **2026-02-17**.
 
 ## Topics
 
-- <doc:day-2026-02-17>
-  - <doc:open-threads-2026-02-17>
+- <doc:triage-sets-2026-02-17>
 
 ---
 
