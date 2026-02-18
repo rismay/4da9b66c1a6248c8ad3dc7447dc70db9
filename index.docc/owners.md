@@ -1,12 +1,13 @@
 # Owners
 
-Thread pages are categorized by the **owner** they belong to (user or org).
+Thread pages are categorized by the **GitHub owner** they belong to (user or org). Repos live under owners.
+
 ## Topics
 
-### todo3
+### rismay
 
-- <doc:org-todo3>
+- <doc:owner-rismay>
 
 ### Unspecified
 
-- <doc:org-unspecified>
+- <doc:owner-unspecified>
