@@ -1,7 +1,9 @@
 # Topic
 
-All threads for this repo.
+@Metadata {
+  @PageKind(article)
+}
 
 ## Topics
 
-- <doc:threads-index>
+- <doc:threads>
