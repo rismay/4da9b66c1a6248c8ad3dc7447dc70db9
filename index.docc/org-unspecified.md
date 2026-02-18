@@ -1,6 +1,6 @@
 # Unspecified
 
-Threads that could not be mapped to a specific org/user bucket.
+Threads that could not be mapped to a specific owner bucket.
 
 ## Topics
 
