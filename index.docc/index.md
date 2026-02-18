@@ -15,6 +15,7 @@ Stable, overwrite-in-place pages for Discord threads (plus daily triage views).
 ## Topics
 
 ### Threads
+- <doc:orgs>
 - <doc:threads-index>
 
 ### Triage
