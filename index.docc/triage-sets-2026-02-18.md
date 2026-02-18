@@ -1,5 +1,7 @@
 # Triage sets — 2026-02-18
 
+Use this page as the daily operational hub.
+
 ## Topics
 
 - <doc:open-threads-2026-02-18>
