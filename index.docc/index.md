@@ -19,3 +19,4 @@ Operational triage for **todo3** (timezone: `America/Los_Angeles`).
 
 ### Operations
 - <doc:archive>
+- <doc:triage-navigation>
