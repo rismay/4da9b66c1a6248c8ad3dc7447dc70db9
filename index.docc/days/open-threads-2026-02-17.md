@@ -7,10 +7,10 @@ Open threads snapshot for **2026-02-17**.
 ### Priority
 
 #### P0
-- P0.0 — <doc:thread-1470892880003600454-2026-02-17>
+- P0.0 — <doc:thread-1470892880003600454>
 
 #### P1
-- P1.7 — <doc:thread-1473381087769006174-2026-02-17>
+- P1.7 — <doc:thread-1473381087769006174>
 
 #### Other P
 
@@ -19,7 +19,7 @@ _No other open threads in this snapshot._
 ### Severity
 
 #### S0
-- S0 — <doc:thread-1470892880003600454-2026-02-17>
+- S0 — <doc:thread-1470892880003600454>
 
 #### S1
 
