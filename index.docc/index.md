@@ -24,4 +24,3 @@ Stable, overwrite-in-place pages for Discord threads (plus daily triage views).
 
 ### Operations
 - <doc:triage-navigation>
-- <doc:thread-pages-spec>
