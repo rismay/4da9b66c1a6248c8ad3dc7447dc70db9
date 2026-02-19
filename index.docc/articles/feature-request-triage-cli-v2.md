@@ -138,10 +138,84 @@ Use the filename stem as the DocC identifier.
 - triage-run page: `<runId>.triage-run.mirror.md`
 - day page: `<YYYY-MM-DD>.day.mirror.md`
 
+## Incremental triage run authoring (single run dir, built up over time)
+
+A triage run should be creatable **incrementally** (several CLI calls) while still producing a **single** disk-canonical run directory.
+
+### Canonical directory
+
+One run = one directory:
+
+- `provisioned/threads/triage/runs/<runId>/`
+
+Inside it, one schema per file:
+
+- `triage-run.mirror.json` (manifest)
+- `items.mirror.jsonl` (append-only snapshot log)
+- `assignment.mirror.json` (overwrite-in-place)
+- optional `render.mirror.md` (posting payload)
+
+### Incremental CLI primitives
+
+#### 1) Init
+
+Create the run directory and manifest (idempotent, create-if-missing):
+
+```bash
+swift-threads-cli triage run init \
+  --out-root /Users/sonoma/todo3/provisioned/threads/triage/runs \
+  --run-id run-2026-02-19T05-00-00-0800 \
+  --tz America/Los_Angeles \
+  --lane-name "#pjm-todo3" \
+  --lane-discord-channel-id 1470041553795023070 \
+  --mirrors-root /Users/sonoma/todo3/.clia/profiles/operators/rismay/threads \
+  --routing-map-path /Users/sonoma/todo3/provisioned/threads/thread-org-map.json \
+  --docc-root /Users/sonoma/todo3/provisioned/threads/todo3.triage.docc
+```
+
+#### 2) Append item (repeatable)
+
+Append one line to `items.mirror.jsonl`. To update an item, append a new line with the same `--id`; latest wins when rendering.
+
+```bash
+swift-threads-cli triage run append-item \
+  --run-dir /Users/sonoma/todo3/provisioned/threads/triage/runs/run-2026-02-19T05-00-00-0800 \
+  --id discord.thread:1470893762019459122 \
+  --kind thread \
+  --title "Reminder system: appointments" \
+  --bucket open \
+  --priority p0 \
+  --owners "rismay" \
+  --next-action "Define reminder offsets and write the SOP" \
+  --discord-url "<https://discord.com/channels/1407786883773104278/1470893762019459122>"
+```
+
+#### 3) Assign (overwrite-in-place)
+
+```bash
+swift-threads-cli triage run assign \
+  --run-dir /Users/sonoma/todo3/provisioned/threads/triage/runs/run-2026-02-19T05-00-00-0800 \
+  --assigned-next-id discord.thread:1470893762019459122 \
+  --assignees "rismay" \
+  --why "Highest leverage unblocker today"
+```
+
+#### 4) Render (optional, repeatable)
+
+Emit a canonical posting payload derived from `items.mirror.jsonl` + `assignment.mirror.json`:
+
+```bash
+swift-threads-cli triage run render \
+  --run-dir /Users/sonoma/todo3/provisioned/threads/triage/runs/run-2026-02-19T05-00-00-0800 \
+  --out /Users/sonoma/todo3/provisioned/threads/triage/runs/run-2026-02-19T05-00-00-0800/render.mirror.md
+```
+
 ## Acceptance criteria
 
 - One-command site regeneration:
   - `swift-threads-cli triage generate-mirror ...`
+- Incremental run authoring works:
+  - init → many append-item → assign → render produces one coherent run dir.
 - Site pages show stable navigation without random/automatic linking:
   - hubs use `@AutomaticSeeAlso(disabled)`
   - threads hub uses `@TopicsVisualStyle(detailedGrid)`
