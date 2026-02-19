@@ -10,7 +10,7 @@
   @AutomaticSeeAlso(disabled)
 }
 
-Stable, overwrite-in-place pages for Discord threads (plus daily triage views).
+Stable, overwrite-in-place pages for Discord threads (plus triage views and triage runs).
 
 ## Topics
 
@@ -20,7 +20,9 @@ Stable, overwrite-in-place pages for Discord threads (plus daily triage views).
 ### Triage
 - <doc:latest>
 - <doc:archive>
+
+### Runs
 - <doc:runs>
 
 ### Operations
-- <doc:triage-navigation>
+- <doc:feature-request-triage-cli-v2>
