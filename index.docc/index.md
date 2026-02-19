@@ -20,6 +20,7 @@ Stable, overwrite-in-place pages for Discord threads (plus daily triage views).
 ### Triage
 - <doc:latest>
 - <doc:archive>
+- <doc:runs>
 
 ### Operations
 - <doc:triage-navigation>
