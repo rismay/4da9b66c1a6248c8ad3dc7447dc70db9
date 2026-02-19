@@ -15,14 +15,14 @@ Stable, overwrite-in-place pages for Discord threads (plus triage views and tria
 ## Topics
 
 ### Threads
-- <doc:threads>
+- <doc:threads.mirror>
 
 ### Triage
-- <doc:latest>
-- <doc:archive>
+- <doc:latest.triage.mirror>
+- <doc:archive.triage.mirror>
 
 ### Runs
-- <doc:runs>
+- <doc:runs.mirror>
 
 ### Operations
 - <doc:feature-request-triage-cli-v2>
