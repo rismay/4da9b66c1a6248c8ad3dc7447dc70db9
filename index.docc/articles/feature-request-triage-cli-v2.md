@@ -222,7 +222,179 @@ swift-threads-cli triage run mirror \
 - Every generated artifact is clearly labeled by suffix (`.mirror.md` / `.mirror.json`).
 - Day bucket pages support multiple runs per day, with “latest wins” behavior.
 
+## Reliability / editability guarantees
+
+### Can we generate a good triage site every time?
+
+**Structure:** yes. The site is fully regeneratable from disk inputs:
+
+- mirrors (canonical)
+- triage runs (canonical)
+- routing map
+
+If those inputs are present, `triage docc-site ...` can reproduce the DocC bundle deterministically.
+
+**Decision quality:** depends on the prioritization rules encoded in `triage generate-mirror`. The v2 surface is designed so we can improve the generator over time without changing the on-disk run format.
+
+### Can we edit a run after it was created (using the tool)?
+
+Yes. The run directory is intentionally incremental:
+
+- To **change an item**, append a new snapshot line to `items.mirror.jsonl` with the same `id`. When the site mirrors the run, **latest wins**.
+- To **change the assignment**, overwrite `assignment.mirror.json`.
+- To **change the posting payload**, regenerate the payload markdown using `triage run mirror`.
+
+Then regenerate the DocC site from disk (no Discord reads required).
+
+## Proposed CLI (help / man-style)
+
+This is the intended v2 interface. (Exact flag names may be adjusted, but the primitives and IO contracts must remain stable.)
+
+### `swift-threads-cli triage --help`
+
+```
+OVERVIEW: Triage tooling (mirrors → triage runs → DocC site).
+
+USAGE: swift-threads-cli triage <subcommand>
+
+SUBCOMMANDS:
+  docc-site              Mirror DocC triage site pages/resources from disk.
+  generate-mirror        Generate a decision-grade triage-run on disk, then mirror the DocC site.
+  sync-to-discord        Plan + backfill missing on-disk thread mirrors from Discord (OpenClaw executes the plan).
+  run                    Incrementally author a single triage-run directory.
+
+  help                   Show help information.
+```
+
+### `swift-threads-cli triage docc-site --help`
+
+```
+OVERVIEW: Mirror the triage DocC bundle from disk (threads + views + runs).
+
+USAGE: swift-threads-cli triage docc-site <subcommand>
+
+SUBCOMMANDS:
+  threads                Mirror stable per-thread DocC pages + resources from mirror summaries.
+  views                  Mirror hubs + day views + run views from mirrors + triage runs.
+  rebuild                One-shot: threads then views.
+```
+
+### `swift-threads-cli triage generate-mirror --help`
+
+```
+OVERVIEW: Generate a new triage-run directory (disk-canonical) from mirrors, then mirror the DocC site.
+
+USAGE: swift-threads-cli triage generate-mirror \
+  --mirrors-root <path> \
+  --routing-map <path> \
+  --docc-root <path> \
+  --triage-runs-root <path> \
+  --lane-name <name> \
+  --lane-discord-channel-id <id> \
+  [--tz <iana>] \
+  [--assignees <csv>]
+
+OUTPUT:
+  - writes: <triage-runs-root>/<runId>/{triage-run.mirror.json,items.mirror.jsonl,assignment.mirror.json[,render.mirror.md]}
+  - mirrors the DocC site into <docc-root>
+```
+
+### `swift-threads-cli triage sync-to-discord --help`
+
+```
+OVERVIEW: Plan and backfill missing mirror summaries by enumerating active threads under lane parent channel ids.
+
+NOTE:
+  - Swift CLI writes a deterministic plan artifact.
+  - OpenClaw executes the Discord fetch and writes mirrors.
+
+USAGE: swift-threads-cli triage sync-to-discord \
+  --lane-parent-channel-id <id> [--lane-parent-channel-id <id> ...] \
+  --mirrors-root <path> \
+  --out <plan.mirror.json>
+
+OUTPUT:
+  - writes: <plan.mirror.json>
+```
+
+### `swift-threads-cli triage run --help`
+
+```
+OVERVIEW: Incrementally author a single triage-run directory.
+
+USAGE: swift-threads-cli triage run <subcommand>
+
+SUBCOMMANDS:
+  init                   Create <runDir>/triage-run.mirror.json + items.mirror.jsonl.
+  append-item             Append one snapshot line to items.mirror.jsonl (latest wins per id).
+  assign                 Overwrite assignment.mirror.json.
+  mirror                 Mirror a posting payload markdown file derived from items + assignment.
+```
+
+### `swift-threads-cli triage run init --help`
+
+```
+USAGE: swift-threads-cli triage run init \
+  --out-root <path> \
+  --run-id <runId> \
+  [--tz <iana>] \
+  [--lane-name <name>] \
+  [--lane-discord-channel-id <id>] \
+  [--mirrors-root <path>] \
+  [--routing-map-path <path>] \
+  [--docc-root <path>]
+
+OUTPUT:
+  - writes: <out-root>/<run-id>/triage-run.mirror.json
+  - creates: <out-root>/<run-id>/items.mirror.jsonl (if missing)
+```
+
+### `swift-threads-cli triage run append-item --help`
+
+```
+USAGE: swift-threads-cli triage run append-item \
+  --run-dir <path> \
+  --id <stable-id> \
+  --kind <thread|task|incident|doc> \
+  --title <title> \
+  --bucket <open|incidents|blocked|closed> \
+  [--priority <pX[.Y]>] \
+  [--owners <csv>] \
+  [--next-action <sentence>] \
+  [--eta <string>] \
+  [--blocker <text>] \
+  [--discord-url <url>]
+
+NOTES:
+  - This appends one JSON line to items.mirror.jsonl.
+  - To edit an item, append a new line with the same --id; latest wins when mirroring.
+```
+
+### `swift-threads-cli triage run assign --help`
+
+```
+USAGE: swift-threads-cli triage run assign \
+  --run-dir <path> \
+  --assigned-next-id <stable-id> \
+  [--assignees <csv>] \
+  [--why <text>]
+
+OUTPUT:
+  - overwrites: assignment.mirror.json
+```
+
+### `swift-threads-cli triage run mirror --help`
+
+```
+USAGE: swift-threads-cli triage run mirror \
+  --run-dir <path> \
+  --out <render.mirror.md>
+
+OUTPUT:
+  - writes: render.mirror.md (posting payload)
+```
+
 ## Open questions
 
 - What is the authoritative prioritization algorithm for moving items into Now/Next/Blocked/Shipped beyond disk bucket + priority label?
-- Should the triage run generator emit a canonical `render.mirror.md` that is posted verbatim to Discord, or should posting format remain separate?
+- Should the triage generator always emit `render.mirror.md` (canonical Discord payload) or should posting format remain separate?
