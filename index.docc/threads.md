@@ -7,8 +7,6 @@
 
 ## Topics
 
-### All threads
-
 - <doc:thread-1470893762019459122>
 - <doc:thread-1471918165100335155>
 - <doc:thread-1471903185294725343>
