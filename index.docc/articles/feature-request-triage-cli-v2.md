@@ -200,12 +200,12 @@ swift-threads-cli triage run assign \
   --why "Highest leverage unblocker today"
 ```
 
-#### 4) Render (optional, repeatable)
+#### 4) Mirror (optional, repeatable)
 
 Emit a canonical posting payload derived from `items.mirror.jsonl` + `assignment.mirror.json`:
 
 ```bash
-swift-threads-cli triage run render \
+swift-threads-cli triage run mirror \
   --run-dir /Users/sonoma/todo3/provisioned/threads/triage/runs/run-2026-02-19T05-00-00-0800 \
   --out /Users/sonoma/todo3/provisioned/threads/triage/runs/run-2026-02-19T05-00-00-0800/render.mirror.md
 ```
