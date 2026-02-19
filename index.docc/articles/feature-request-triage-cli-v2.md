@@ -1,5 +1,9 @@
 # Feature request: triage command surface v2 (mirrors → runs → DocC site)
 
+This request is now split into a small Topic index + focused pages:
+
+- <doc:triage-cli-v2/index>
+
 @Metadata {
   @PageKind(article)
   @TitleHeading("Feature request")
