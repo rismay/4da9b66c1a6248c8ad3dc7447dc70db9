@@ -1,1 +1,1 @@
-runsRoot=/Users/sonoma/todo3/provisioned/threads/triage/runs
+runsRoot=/Users/sonoma/todo3/provisioned/gh-pages/docc/triage/runs
