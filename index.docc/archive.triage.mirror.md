@@ -2,4 +2,4 @@
 
 ## Topics
 
-- <doc:days/2026-02-19.day.mirror>
+- <doc:days/2026-02-21.day.mirror>
