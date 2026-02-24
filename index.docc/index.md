@@ -12,12 +12,16 @@
 
 Stable, overwrite-in-place pages for Discord threads (plus daily triage views).
 
-## Topics
+## Triage
 
-### Triage
-- <doc:latest>
-- <doc:archive>
-- <doc:runs>
+@Links(visualStyle: list) {
+  - <doc:latest>
+  - <doc:archive>
+  - <doc:runs>
+}
 
-### Threads
-- <doc:threads>
+## Threads
+
+@Links(visualStyle: detailedGrid) {
+  - <doc:threads>
+}
