@@ -1,5 +1,17 @@
 # Latest
 
+@Options {
+  @TopicsVisualStyle(detailedGrid)
+  @AutomaticSeeAlso(disabled)
+}
+
+## Today
+
+@Links(visualStyle: detailedGrid) {
+  - <doc:2026-02-25.triage-sets.mirror>
+}
+
 ## Topics
 
-- <doc:2026-02-25.triage-sets.mirror>
+- <doc:archive.triage.mirror>
+- <doc:runs.mirror>
