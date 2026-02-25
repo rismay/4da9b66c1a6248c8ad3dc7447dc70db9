@@ -1,15 +1,11 @@
 # Runs
 
-Triage run history (newest first).
+Triage run history.
 
 @Options {
   @AutomaticSeeAlso(disabled)
 }
 
 @Links(visualStyle: detailedGrid) {
-  - <doc:runs/sample-2026-02-18T23-07-28-0800.triage-run.mirror>
-  - <doc:runs/run-2026-02-25T03-30-21-0800.triage-run.mirror>
-  - <doc:runs/run-2026-02-21T06-24-45-0800.triage-run.mirror>
-  - <doc:runs/run-2026-02-21T06-22-07-0800.triage-run.mirror>
-  - <doc:runs/run-2026-02-21T05-46-58-0800.triage-run.mirror>
+  - <doc:runs-2026.mirror>
 }
