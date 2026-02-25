@@ -7,17 +7,26 @@
 }
 
 @Options {
+  @TopicsVisualStyle(detailedGrid)
   @AutomaticSeeAlso(disabled)
 }
 
 Stable, overwrite-in-place pages for Discord threads (plus daily triage views).
 
+## Triage
+
+@Links(visualStyle: detailedGrid) {
+  - <doc:latest>
+  - <doc:archive>
+  - <doc:runs>
+}
+
+## Threads
+
+@Links(visualStyle: detailedGrid) {
+  - <doc:threads>
+}
+
 ## Topics
 
-### Triage
-- <doc:latest>
-- <doc:archive>
-- <doc:runs>
-
-### Threads
-- <doc:threads>
+- <doc:topic>

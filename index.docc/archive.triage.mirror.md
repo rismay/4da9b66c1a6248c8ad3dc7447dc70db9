@@ -1,5 +1,11 @@
 # Archive
 
-## Topics
+Browse daily snapshots.
 
-- <doc:days/2026-02-25.day.mirror>
+@Options {
+  @AutomaticSeeAlso(disabled)
+}
+
+@Links(visualStyle: detailedGrid) {
+  - <doc:days/2026-02-25.day.mirror>
+}
