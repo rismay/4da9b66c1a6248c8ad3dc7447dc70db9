@@ -17,8 +17,9 @@ Stable, overwrite-in-place pages for Discord threads (plus daily triage views).
 
 @Links(visualStyle: detailedGrid) {
   - <doc:latest>
-  - <doc:archive>
-  - <doc:runs>
+  - <doc:executive-summary.mirror>
+  - <doc:daily-activity.mirror>
+  - <doc:milestones.mirror>
 }
 
 ## Threads
@@ -27,6 +28,9 @@ Stable, overwrite-in-place pages for Discord threads (plus daily triage views).
   - <doc:threads>
 }
 
-## Topics
+## Archive
 
-- <doc:topic>
+@Links(visualStyle: detailedGrid) {
+  - <doc:archive>
+  - <doc:runs>
+}
