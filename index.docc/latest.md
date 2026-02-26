@@ -8,7 +8,7 @@
 ## Today
 
 @Links(visualStyle: detailedGrid) {
-  - <doc:2026-02-25.triage-sets.mirror>
+  - <doc:2026-02-26.triage-sets.mirror>
 }
 
 ## Topics

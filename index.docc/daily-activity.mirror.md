@@ -1,6 +1,6 @@
-# Daily activity — 2026-02-25
+# Daily activity — 2026-02-26
 
-Run: `run-2026-02-25T09-21-09-0800`
+Run: `run-2026-02-26T05-11-13-0800`
 
 @Options {
   @AutomaticSeeAlso(disabled)
@@ -77,4 +77,4 @@ Run: `run-2026-02-25T09-21-09-0800`
 ## Topics
 
 - <doc:executive-summary.mirror>
-- <doc:2026-02-25.triage-sets.mirror>
+- <doc:2026-02-26.triage-sets.mirror>

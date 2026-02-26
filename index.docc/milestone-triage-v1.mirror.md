@@ -19,4 +19,4 @@ Owner: `cadence`
 ## Topics
 
 - <doc:executive-summary.mirror>
-- <doc:2026-02-25.triage-sets.mirror>
+- <doc:2026-02-26.triage-sets.mirror>
