@@ -6,6 +6,7 @@ Triage run history.
   @AutomaticSeeAlso(disabled)
 }
 
-@Links(visualStyle: detailedGrid) {
-  - <doc:runs-2026.mirror>
-}
+## Topics
+
+### Years
+- <doc:runs-2026.mirror>
