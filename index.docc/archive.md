@@ -1,11 +1,7 @@
 # Archive
 
-Browse daily snapshots.
+Archive has moved to Runs.
 
-@Options {
-  @AutomaticSeeAlso(disabled)
-}
+## Topics
 
-@Links(visualStyle: detailedGrid) {
-  - <doc:2026-02-26.day.mirror>
-}
+- <doc:runs>

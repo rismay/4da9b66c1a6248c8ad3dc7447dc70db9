@@ -28,9 +28,8 @@ Stable, overwrite-in-place pages for Discord threads (plus daily triage views).
   - <doc:threads>
 }
 
-## Archive
+## History
 
 @Links(visualStyle: detailedGrid) {
-  - <doc:archive>
   - <doc:runs>
 }
