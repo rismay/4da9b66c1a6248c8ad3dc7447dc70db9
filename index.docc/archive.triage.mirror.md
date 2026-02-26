@@ -7,5 +7,5 @@ Browse daily snapshots.
 }
 
 @Links(visualStyle: detailedGrid) {
-  - <doc:days/2026-02-26.day.mirror>
+  - <doc:2026-02-26.day.mirror>
 }
